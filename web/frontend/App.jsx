@@ -1,35 +1,21 @@
-import { BrowserRouter } from "react-router-dom";
-import { NavigationMenu } from "@shopify/app-bridge-react";
-import Routes from "./Routes";
-
 import {
-  AppBridgeProvider,
-  QueryProvider,
-  PolarisProvider,
-} from "./components";
+  AppType,
+  Provider as GadgetProvider,
+} from "@gadgetinc/react-shopify-app-bridge";
+import { api } from "./api";
+import { PolarisProvider } from "./components";
 
 export default function App() {
-  // Any .tsx or .jsx files in /pages will become a route
-  // See documentation for <Routes /> for more info
-  const pages = import.meta.globEager("./pages/**/!(*.test.[jt]sx)*.([jt]sx)");
-
   return (
-    <PolarisProvider>
-      <BrowserRouter>
-        <AppBridgeProvider>
-          <QueryProvider>
-            <NavigationMenu
-              navigationLinks={[
-                {
-                  label: "Page name",
-                  destination: "/pagename",
-                },
-              ]}
-            />
-            <Routes pages={pages} />
-          </QueryProvider>
-        </AppBridgeProvider>
-      </BrowserRouter>
-    </PolarisProvider>
+    <GadgetProvider
+      type={AppType.Embedded}
+      shopifyApiKey={process.env["SHOPIFY_API_KEY"]}
+      api={api}
+    >
+      <PolarisProvider>Hello, world!</PolarisProvider>
+      /** Gadget's Provider takes care of App Bridge authentication, you do not need
+      Shopify's default AppBridgeProvider. Feel free to use the default page
+      navigation that the CLI sets up for you! */
+    </GadgetProvider>
   );
 }

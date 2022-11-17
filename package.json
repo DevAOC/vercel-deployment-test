@@ -6,12 +6,13 @@
   "scripts": {
     "shopify": "shopify",
     "build": "shopify app build",
-    "dev": "shopify app dev",
+    "dev": "shopify app dev --no-update",
     "info": "shopify app info",
-    "generate": "shopify app generate",
+    "scaffold": "shopify app scaffold",
     "deploy": "shopify app deploy"
   },
   "dependencies": {
+    "@gadget-client/vercel-deployment-test": "^1.5.0",
     "@shopify/app": "3.23.0",
     "@shopify/cli": "3.23.0"
   },
