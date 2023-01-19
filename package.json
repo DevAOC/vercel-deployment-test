@@ -14,6 +14,7 @@
   "dependencies": {
     "@gadget-client/vercel-deployment-test": "^1.5.0",
     "@shopify/app": "3.23.0",
+    "@shopify/channels-ui": "^1.0.3",
     "@shopify/cli": "3.23.0"
   },
   "author": "acharette"
